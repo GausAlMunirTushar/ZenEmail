@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
+import GoogleSignButton from "../custom/GoogleSignButton";
 
 const Hero = () => {
 	return (
@@ -16,10 +17,7 @@ const Hero = () => {
 			</p>
 			<div className="flex justify-center space-x-4">
 				<Button variant="outline"> Try Demo</Button>
-				<Button className="bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-500">
-					{" "}
-					Get Started
-				</Button>
+				<GoogleSignButton />
 			</div>
 			<div className="flex justify-center my-6">
 				<Image
