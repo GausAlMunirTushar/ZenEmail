@@ -23,7 +23,14 @@ export default function RootLayout({ children }) {
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<ConvexClientProvider>{children}</ConvexClientProvider>
+				<ConvexClientProvider>
+					<GoogleOAuthProvider
+						clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+					>
+						<div>{children}</div>
+					</GoogleOAuthProvider>
+					;
+				</ConvexClientProvider>
 			</body>
 		</html>
 	);
