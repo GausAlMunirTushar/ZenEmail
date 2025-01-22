@@ -21,10 +21,11 @@ const Hero = () => {
 			</div>
 			<div className="flex justify-center my-6">
 				<Image
-					src="/images/hero.svg"
+					src="/images/landing.png"
 					alt="hero"
 					width={800}
 					height={800}
+					className="rounded-lg"
 				/>
 			</div>
 		</section>
