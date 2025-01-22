@@ -2,22 +2,27 @@
 import { UserDetailContext } from "@/contexts/UserDetailContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 export default function ConvexClientProvider({ children }) {
-	const [userDetail, setUserDetail] = useState();
+	const [userDetail, setUserDetail] = useState(null);
+
 	useEffect(() => {
 		if (typeof window !== "undefined") {
-			const storage = JSON.parse(localStorage.getItem("userInfo"));
-			if (storage?.email || storage) {
-				// Redirect to home page
-			} else {
-				setUserDetail(storage);
+			try {
+				const storage = JSON.parse(localStorage.getItem("userInfo"));
+				if (storage?.email) {
+					setUserDetail(storage);
+				}
+			} catch (error) {
+				console.error("Error parsing localStorage data:", error);
+				setUserDetail(null);
 			}
 		}
 	}, []);
+
 	return (
 		<ConvexProvider client={convex}>
 			<GoogleOAuthProvider
@@ -26,14 +31,14 @@ export default function ConvexClientProvider({ children }) {
 				<UserDetailContext.Provider
 					value={{ userDetail, setUserDetail }}
 				>
-					<div>{children}</div>
+					{children}
 				</UserDetailContext.Provider>
 			</GoogleOAuthProvider>
-			;
 		</ConvexProvider>
 	);
 }
 
-export const UserDetailContext = () => {
+// Custom Hook
+export const useUserDetailContext = () => {
 	return useContext(UserDetailContext);
 };
