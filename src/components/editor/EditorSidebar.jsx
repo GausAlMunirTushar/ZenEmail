@@ -5,7 +5,7 @@ import ElementList from "@/data/elementList";
 
 const EditorSidebar = () => {
 	return (
-		<aside className="p-4 h-screen overflow-y-auto scrollbar-none">
+		<aside className="p-4 h-screen overflow-y-auto  scrollbar-none">
 			<section>
 				<div>
 					<h1 className="text-xl font-bold mb-2">Layouts</h1>
@@ -18,7 +18,7 @@ const EditorSidebar = () => {
 			</section>
 			<section>
 				<div>
-					<h1 className="text-xl font-bold my-2">Elements</h1>
+					<h1 className="text-xl font-bold mt-8 mb-2">Elements</h1>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 					{ElementList.map((element, index) => (
