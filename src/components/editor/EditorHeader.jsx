@@ -5,7 +5,7 @@ import { CodeSquare, Monitor, Smartphone } from "lucide-react";
 
 const EditorHeader = () => {
 	return (
-		<div className="px-4 shadow-sm flex items-center justify-between py-2">
+		<div className="px-4 shadow-sm flex items-center justify-between py-3">
 			<Image
 				src="/images/zenemail-logo.svg"
 				alt="header"
