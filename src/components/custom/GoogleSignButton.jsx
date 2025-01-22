@@ -2,8 +2,12 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 const GoogleSignButton = () => {
+	const CreateUser = useMutation(api.users.CreateUser);
+
 	const googleLogin = useGoogleLogin({
 		onSuccess: async (tokenResponse) => {
 			try {
@@ -18,14 +22,24 @@ const GoogleSignButton = () => {
 					},
 				);
 
-				console.log("User Info:", userInfo.data);
+				const user = userInfo?.data;
+
+				// Save user info to the database
+				const result = await CreateUser({
+					name: user?.name,
+					email: user?.email,
+					picture: user?.picture,
+				});
+				const userDetails = {
+					...user,
+					_id: result?.id ?? result,
+				};
 				if (typeof window !== "undefined") {
 					localStorage.setItem(
 						"userInfo",
-						JSON.stringify(userInfo?.data),
+						JSON.stringify(userDetails),
 					);
 				}
-				// Save user info to the database
 			} catch (error) {
 				console.error(
 					"Error fetching user info:",
