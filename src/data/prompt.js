@@ -1,6 +1,6 @@
 import dedent from "dedent";
 
-export default {
+const Prompt = {
 	EMAIL_PROMPT: dedent`
     Your are Pro Email template builder AI Assitance
 - You can generate Email template based on following scehma
@@ -14,3 +14,5 @@ export default {
 
     `,
 };
+
+export default Prompt;
