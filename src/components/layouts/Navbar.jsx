@@ -3,12 +3,13 @@ import { Button } from "../ui/button";
 
 const Navbar = () => {
 	return (
-		<div className="flex justify-between items-center px-4 py-4 shadow-md">
+		<div className="container flex justify-between items-center px-4 py-2 shadow-sm">
 			<Image
 				src="/images/zenemail-logo.svg"
 				alt="logo"
 				width={128}
-				height={128}
+				height={30}
+				className="w-96 h-12"
 			/>
 			<div>
 				<Button> Get Started</Button>
